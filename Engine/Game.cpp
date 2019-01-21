@@ -50,6 +50,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ft.Mark();
+
 	goal.UpdateColor();
 	if( isStarted && !isGameOver )
 	{
@@ -58,7 +60,7 @@ void Game::UpdateModel()
 
 		for( int i = 0; i < nPoo; ++i )
 		{
-			poos[i].Update();
+			poos[i].Update(dt);
 			if( poos[i].TestCollision( dude ) )
 			{
 				isGameOver = true;
@@ -28436,8 +28438,6 @@ void Game::ComposeFrame()
 	}
 	else
 	{
-		gfx.DrawCircle(300, 300, 200, Colors::Red);
-
 		goal.Draw( gfx );
 		for( int i = 0; i < nPoo; ++i )
 		{
