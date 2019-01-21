@@ -240,6 +240,7 @@ Graphics::Graphics( HWNDKey& key )
 		_aligned_malloc( sizeof( Color ) * Graphics::ScreenWidth * Graphics::ScreenHeight,16u ) );
 }
 
+
 Graphics::~Graphics()
 {
 	// free sysbuffer memory (aligned free)
@@ -336,6 +337,22 @@ void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
 	}
 }
 
+void Graphics::DrawCircle(int in_x, int in_y, int radius, Color in_c)
+{
+	const int rSq = radius * radius;
+
+	for (int y_line = in_y - radius + 1; y_line < in_y + radius; ++y_line)
+	{
+		for (int x_line = in_x - radius + 1; x_line < in_x + radius; ++x_line)
+		{
+			const int xDif = in_x - x_line;
+			const int yDif = in_y - y_line;
+
+			if(xDif*xDif + yDif*yDif <= rSq)
+				PutPixel(x_line, y_line, in_c);
+		}
+	}
+}
 //////////////////////////////////////////////////
 //           Graphics Exception
 Graphics::Exception::Exception( HRESULT hr,const std::wstring& note,const wchar_t* file,unsigned int line )
