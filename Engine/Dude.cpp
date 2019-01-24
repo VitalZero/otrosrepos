@@ -358,9 +358,11 @@ void Dude::Update( const Keyboard & kbd, const Mouse& mouse, float dt )
 	{
 		Vec2 vecMouse( float(mouse.GetPosX()), float(mouse.GetPosY()) );
 		Vec2 vecDir = vecMouse - (pos + Vec2( float(width / 2.0f), float(height / 2.0f) ) );
-		vecDir.Normalize();
-
-		pos += vecDir * speed * dt;
+		
+		if (vecDir.GetLengthSq() > 2.0f)
+		{
+			pos += vecDir.GetNormalized() * speed * dt;
+		}
 	}
 
 	Vec2 vel(0.0f, 0.0f);

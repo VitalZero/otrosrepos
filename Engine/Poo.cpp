@@ -13,7 +13,7 @@ void Poo::Init(const Vec2& pos_in, const Vec2& vel_in)
 void Poo::Update(float dt)
 {
 	assert( initialized == true );
-	pos += vel * dt;
+	pos +=  vel * dt;
 
 	const float right = pos.x + width;
 	if(pos.x < 0 )
