@@ -1,7 +1,9 @@
 #include "Brick.h"
 
-Brick::Brick(const RectF & rect_in, const Color & c_in)
+Brick::Brick(const RectF& rect_in, const Color& c_in)
 	:
+	destroyed(false),
+	c(c_in),
 	rect(rect_in)
 {
 }

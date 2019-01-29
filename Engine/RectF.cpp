@@ -10,13 +10,15 @@ RectF::RectF( float left_in, float top_in, float right_in, float bottom_in )
 }
 
 RectF::RectF( const Vec2 & topLeft, const Vec2 & bottomRight )
+	:
+	RectF(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y)
 {
-	RectF( topLeft.x, topLeft.y, bottomRight.x, bottomRight.y );
 }
 
 RectF::RectF( const Vec2 & topLeft, float width_in, float height_in )
+	:
+	RectF(topLeft, Vec2(topLeft.x + width_in, topLeft.y + height_in))
 {
-	RectF( topLeft, Vec2(topLeft.x + width_in, topLeft.y + height_in) );
 }
 
 bool RectF::IsOverlapping(const RectF & other)
@@ -25,7 +27,7 @@ bool RectF::IsOverlapping(const RectF & other)
 		top <= other.bottom && bottom >= other.top);
 }
 
-RectF RectF::FromCenter(Vec2 & center, float hWidth, float hHeight)
+RectF RectF::FromCenter(const Vec2 & center, float halfWidth, float halfHeight)
 {
-	return RectF( center.x - hWidth, center.y - hHeight, center.x + hWidth, center.y + hHeight );
+	return RectF( center.x - halfWidth, center.y - halfHeight, center.x + halfWidth, center.y + halfHeight );
 }
