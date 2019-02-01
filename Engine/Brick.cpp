@@ -29,3 +29,4 @@ bool Brick::DoBallCollision(Ball & ball)
 	}
 	return false;
 }
+
