@@ -17,7 +17,7 @@ void Ball::Update(float dt)
 	pos += vel * dt;
 }
 
-bool Ball::WallCollide(RectF & wall)
+bool Ball::DoWallCollision(RectF & wall)
 {
 	RectF rect = GetRect();
 
@@ -64,5 +64,5 @@ void Ball::ReboundY()
 
 RectF Ball::GetRect() const
 {
-	return RectF::FromCenter(pos, size, size);
+	return RectF::FromCenter(pos, radius, radius);
 }

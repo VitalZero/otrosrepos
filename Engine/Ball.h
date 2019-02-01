@@ -9,12 +9,13 @@ public:
 	Ball(Vec2& pos_in, Vec2& vel_in);
 	void Draw(Graphics& gfx) const;
 	void Update(float dt);
-	bool WallCollide(RectF& wall);
-protected:
-	Vec2 pos;
-	Vec2 vel;
-	static constexpr float size = 7.0f;
+	bool DoWallCollision(RectF& wall);
 	void ReboundX();
 	void ReboundY();
 	RectF GetRect() const;
+protected:
+	Vec2 pos;
+	Vec2 vel;
+	static constexpr float radius = 7.0f;
+
 };

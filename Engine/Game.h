@@ -48,9 +48,11 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Sound soundPad;
+	Sound soundBrick;
 	Ball ball;
 	FrameTimer ft;
 	float dt;
+	Brick brick;
 	RectF wall;
 	/********************************/
 };
