@@ -13,6 +13,7 @@ public:
 	void ReboundX();
 	void ReboundY();
 	RectF GetRect() const;
+	Vec2 GetVel();
 protected:
 	Vec2 pos;
 	Vec2 vel;
