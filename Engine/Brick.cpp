@@ -24,7 +24,7 @@ bool Brick::DoBallCollision(Ball & ball)
 		{
 			Vec2 bPos = ball.GetPos();
 			destroyed = true;
-			if (bPos.x <= rect.left || bPos.x >= rect.right)
+			if (bPos.x < rect.left || bPos.x > rect.right)
 			{
 				ball.ReboundX();
 			}
