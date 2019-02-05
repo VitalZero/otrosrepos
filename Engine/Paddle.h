@@ -20,5 +20,5 @@ protected:
 	Color color = Colors::White;
 	float halfWidth, halfHeight;
 	Vec2 pos;
-	float speed = 300.0f;
+	float speed = 400.0f;
 };

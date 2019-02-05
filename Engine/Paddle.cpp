@@ -24,7 +24,16 @@ bool Paddle::DoBallCollision(Ball & ball)
 	{
 		if (ball.GetVel().y > 0.0f)
 		{
-			ball.ReboundY();
+			Vec2 bPos = ball.GetPos();
+
+			if (bPos.x <= GetRect().left || bPos.x >= GetRect().right)
+			{
+				ball.ReboundX();
+			}
+			else
+			{
+				ball.ReboundY();
+			}
 			return true;
 		}
 	}

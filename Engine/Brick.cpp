@@ -22,8 +22,16 @@ bool Brick::DoBallCollision(Ball & ball)
 	{
 		if (rect.IsOverlappingWidth(ball.GetRect()))
 		{
+			Vec2 bPos = ball.GetPos();
 			destroyed = true;
-			ball.ReboundY();
+			if (bPos.x <= rect.left || bPos.x >= rect.right)
+			{
+				ball.ReboundX();
+			}
+			else
+			{
+				ball.ReboundY();
+			}
 			return true;
 		}
 	}

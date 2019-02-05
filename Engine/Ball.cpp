@@ -19,37 +19,35 @@ void Ball::Update(float dt)
 
 bool Ball::DoWallCollision(RectF & wall)
 {
+	bool didItCollide = false;
 	RectF rect = GetRect();
 
 	if (rect.left <= wall.left)
 	{
 		pos.x -= rect.left - wall.left;
 		ReboundX();
-		return true;
+		didItCollide = true;
 	}
-	else if (rect.right > wall.right)
+	if (rect.right > wall.right)
 	{
 		pos.x -= rect.right - wall.right;
 		ReboundX();
-		return true;
-
+		didItCollide = true;
 	}
-	else if (rect.top <= wall.top)
+	if (rect.top <= wall.top)
 	{
 		pos.y -= rect.top - wall.top;
 		ReboundY();
-		return true;
-
+		didItCollide = true;
 	}
-	else if (rect.bottom > wall.bottom)
+	if (rect.bottom > wall.bottom)
 	{
 		pos.y -= rect.bottom - wall.bottom;
 		ReboundY();
-		return true;
-
+		didItCollide = true;
 	}
 
-	return false;
+	return didItCollide;
 }
 
 void Ball::ReboundX()
@@ -67,7 +65,12 @@ RectF Ball::GetRect() const
 	return RectF::FromCenter(pos, radius, radius);
 }
 
-Vec2 Ball::GetVel()
+Vec2 Ball::GetPos() const
+{
+	return pos;
+}
+
+Vec2 Ball::GetVel() const
 {
 	return vel;
 }
