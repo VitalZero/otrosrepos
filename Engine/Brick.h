@@ -6,14 +6,16 @@
 
 class Brick
 {
-public:
-	Brick() = default;
-	Brick(const RectF& rect_in, const Color& c_in);
-	void Draw(Graphics& gfx) const;
-	bool DoBallCollision(Ball& ball);
 private:
 	static constexpr float padding = 1.0f;
 	RectF rect;
 	Color c;
 	bool destroyed;
+public:
+	Brick() = default;
+	Brick(const RectF& rect_in, const Color& c_in);
+	void Draw(Graphics& gfx) const;
+	bool CheckBallCollision(const Ball& ball) const;
+	void ExecuteBallCollision(Ball& ball);
+	Vec2 GetCenter() const;
 };
