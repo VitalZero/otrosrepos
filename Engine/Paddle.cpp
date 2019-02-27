@@ -21,7 +21,7 @@ void Paddle::Draw(Graphics & gfx) const
 bool Paddle::DoBallCollision(Ball & ball)
 {
 	const RectF rect = GetRect();
-	if ( rect.IsOverlappingWith(ball.GetRect() ) )
+	if ( rect.IsOverlappingWith(ball.GetRect() ) && (ball.GetVel().y > 0) )
 	{
 		//if (ball.GetVel().y > 0.0f)
 		//{

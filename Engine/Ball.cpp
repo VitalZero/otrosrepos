@@ -43,8 +43,9 @@ bool Ball::DoWallCollision(RectF & wall)
 	if (rect.bottom > wall.bottom)
 	{
 		pos.y -= rect.bottom - wall.bottom;
-		ReboundY();
-		didItCollide = true;
+		//ReboundY();
+		died = true;
+		didItCollide = false;
 	}
 
 	return didItCollide;
@@ -58,6 +59,11 @@ void Ball::ReboundX()
 void Ball::ReboundY()
 {
 	vel.y = -vel.y;
+}
+
+bool Ball::Died() const
+{
+	return died;
 }
 
 RectF Ball::GetRect() const

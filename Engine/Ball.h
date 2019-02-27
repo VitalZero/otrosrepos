@@ -12,12 +12,14 @@ public:
 	bool DoWallCollision(RectF& wall);
 	void ReboundX();
 	void ReboundY();
+	bool Died() const;
 	RectF GetRect() const;
 	Vec2 GetVel() const;
 	Vec2 GetPos() const;
 protected:
 	Vec2 pos;
 	Vec2 vel;
+	bool died = false;
 	static constexpr float radius = 7.0f;
 
 };

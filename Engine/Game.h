@@ -29,6 +29,7 @@
 #include "FrameTimer.h"
 #include "Sound.h"
 #include "Paddle.h"
+#include "Wall.h"
 
 class Game
 {
@@ -49,8 +50,8 @@ private:
 	/********************************/
 	/*  User Variables              */
 	static constexpr float brickWidth = 45.0f;
-	static constexpr float brickHeight = 24.0f;
-	static constexpr int bricksAcross = 16;
+	static constexpr float brickHeight = 20.0f;
+	static constexpr int bricksAcross = 13;
 	static constexpr int bricksDown = 4;
 	static constexpr int nBricks = bricksAcross * bricksDown;
 	Sound soundPad;
@@ -61,7 +62,7 @@ private:
 	int padTimer = 0;
 	bool padCollision = false;
 	Brick bricks[nBricks];
-	RectF wall;
+	Wall wall;
 	Paddle pad;
 	/********************************/
 };
