@@ -1,9 +1,11 @@
 #include "Ball.h"
+#include "Paddle.h"
 
-Ball::Ball(Vec2 & pos_in, Vec2 & vel_in)
+Ball::Ball(Vec2 & pos_in, Vec2 & vel_in, Paddle& pad)
 	:
 	pos(pos_in),
-	vel(vel_in)
+	vel(vel_in),
+	pad(pad)
 {
 }
 
@@ -37,14 +39,18 @@ bool Ball::DoWallCollision(RectF & wall)
 	if (rect.top <= wall.top)
 	{
 		pos.y -= rect.top - wall.top;
-		ReboundY();
+		vel.y = -vel.y;// ReboundY();
 		didItCollide = true;
 	}
 	if (rect.bottom > wall.bottom)
 	{
 		pos.y -= rect.bottom - wall.bottom;
-		//ReboundY();
-		died = true;
+		ReboundY();
+		/*if (pad.GetLives() > 0)
+			pad.LoseLive();
+		else
+			died = true;*/
+
 		didItCollide = false;
 	}
 
@@ -58,6 +64,21 @@ void Ball::ReboundX()
 
 void Ball::ReboundY()
 {
+	vel.y = -vel.y;
+}
+
+void Ball::ReboundY(Vec2& padPos)
+{
+	const float uno = pos.x;
+	const float dos = padPos.x;
+	const float res = (padPos.x / pos.x)/10;
+
+	//vel.x = vel.x + (vel.x * -res);
+	/*Vec2 tmpPos = padPos - pos;
+	tmpPos.x = atan2(tmpPos.y, tmpPos.x);
+	tmpPos.x = cos(tmpPos.x);
+	vel.x = 300.0f * tmpPos.x;*/
+	//vel.x = vel.x * cos(tmpPos.x);
 	vel.y = -vel.y;
 }
 

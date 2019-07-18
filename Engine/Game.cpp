@@ -27,21 +27,28 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	soundPad(L"sounds\\arkpad.wav"),
 	soundBrick(L"sounds\\arkbrick.wav"),
-	ball(Vec2(400.0f, 400.0f), Vec2(-300.0f, -300.0f)),
-	pad(Vec2(400.0f, 550.0f), 50.0f, 10.0f), 
-	wall( 102.5f, 50.0f, float(Graphics::ScreenWidth) -102.5f, float(Graphics::ScreenHeight), 5)
+	pad(Vec2(400.0f, 550.0f), 50.0f, 8.0f),
+	ball(Vec2(400.0f, 400.0f), Vec2(-300.0f, -300.0f), pad),
+	wall( 135.0f, 70.0f, float(Graphics::ScreenWidth) -135.0f, float(Graphics::ScreenHeight), 5)
 {
-	const Color colors[5] = { Colors::Blue, Colors::Cyan, Colors::Red, Colors::Green, Colors::Magenta };
-	const Vec2 topLeft(wall.GetRect().left, wall.GetRect().top);
+	const Color colors[6] = { Colors::Blue, Colors::Cyan, Colors::Red, Colors::Green, Colors::Magenta, Colors::Yellow};
+	const Vec2 topLeft(wall.GetRect().left, wall.GetRect().top+50);
 
 	int i = 0;
+	int type = 0;
+
 	for (int y = 0; y < bricksDown; ++y)
 	{
+		if (y == 2)
+			type = 1;
+		else
+			type = 0;
+
 		for (int x = 0; x < bricksAcross; ++x)
 		{
 			bricks[i] = Brick(RectF(
 				Vec2(float(x) * brickWidth, float(y) * brickHeight) + topLeft,
-				brickWidth, brickHeight), colors[y]);
+				brickWidth, brickHeight), colors[y], type);
 			++i;
 		}
 	}
@@ -50,15 +57,21 @@ Game::Game(MainWindow& wnd)
 void Game::Go()
 {
 	gfx.BeginFrame();	
-	UpdateModel();
+
+	float elapsedTime = ft.Mark();
+	while (elapsedTime > 0.0f)
+	{
+		const float dt = std::min(0.0025f, elapsedTime);
+		UpdateModel(dt);
+		elapsedTime -= dt;
+	}
+
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel(float dt)
 {
-	dt = ft.Mark();
-
 	if (!ball.Died())
 	{
 		ball.Update(dt);
@@ -96,31 +109,19 @@ void Game::UpdateModel()
 
 	if (collisionHappened)
 	{
+		pad.ResetCoolDown();
 		bricks[curColIndex].ExecuteBallCollision(ball);
 		soundBrick.Play();
 	}
 
-	if (padCollision)
+	if (pad.DoBallCollision(ball))
 	{
-		++padTimer;
+		soundPad.Play();
 	}
-	else
-	{
-		if (pad.DoBallCollision(ball))
-		{
-			padCollision = true;
-			soundPad.Play();
-		}
-	}
-	if (padTimer >= 20)
-	{
-		padCollision = false;
-		padTimer = 0;
-	}
-
 
 	if (ball.DoWallCollision(wall.GetRect()) )
 	{
+		pad.ResetCoolDown();
 		soundPad.Play();
 	}
 }

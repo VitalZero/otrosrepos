@@ -40,7 +40,7 @@ public:
 	void Go();
 private:
 	void ComposeFrame();
-	void UpdateModel();
+	void UpdateModel(float dt);
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -49,18 +49,15 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	static constexpr float brickWidth = 45.0f;
-	static constexpr float brickHeight = 20.0f;
+	static constexpr float brickWidth = 40.0f;
+	static constexpr float brickHeight = 18.0f;
 	static constexpr int bricksAcross = 13;
-	static constexpr int bricksDown = 4;
+	static constexpr int bricksDown = 6;
 	static constexpr int nBricks = bricksAcross * bricksDown;
 	Sound soundPad;
 	Sound soundBrick;
 	Ball ball;
 	FrameTimer ft;
-	float dt;
-	int padTimer = 0;
-	bool padCollision = false;
 	Brick bricks[nBricks];
 	Wall wall;
 	Paddle pad;

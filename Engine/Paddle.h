@@ -14,11 +14,16 @@ public:
 	void DoWallCollision(const RectF& wall);
 	void Update(Keyboard& kbd, float dt);
 	RectF GetRect() const;
+	void LoseLive();
+	int GetLives() const;
+	void ResetCoolDown();
 protected:
 	static constexpr float wingWidth = 18.0f;
 	Color wingColor = Colors::Red;
 	Color color = Colors::White;
 	float halfWidth, halfHeight;
 	Vec2 pos;
+	bool isCoolDown = false;
+	int lives = 3;
 	float speed = 300.0f;
 };

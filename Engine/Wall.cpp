@@ -21,12 +21,12 @@ RectF Wall::GetRect() const
 void Wall::Draw(Graphics& gfx)
 {
 	//top
-	gfx.DrawRect((int)rect.left, (int)rect.top, (int)rect.right, (int)(rect.top + width), Colors::White );
+	gfx.DrawRect((int)rect.left, (int)rect.top, (int)rect.right, (int)(rect.top + width), Color(250, 170, 80) );
 	//left
-	gfx.DrawRect((int)rect.left, (int)rect.top, (int)(rect.left + width), (int)rect.bottom, Colors::White);
+	gfx.DrawRect((int)rect.left, (int)rect.top, (int)(rect.left + width), (int)rect.bottom, Color(250, 170, 80) );
 	//bottom
 	//gfx.DrawRect((int)rect.left, (int)(rect.bottom-width), (int)rect.right, (int)rect.bottom, Colors::White);
 	//right
-	gfx.DrawRect((int)(rect.right-width), (int)rect.top, (int)rect.right, (int)rect.bottom, Colors::White);
+	gfx.DrawRect((int)(rect.right-width), (int)rect.top, (int)rect.right, (int)rect.bottom, Color(250, 170, 80) );
 
 }
