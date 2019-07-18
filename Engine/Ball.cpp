@@ -19,39 +19,35 @@ void Ball::Update(float dt)
 	pos += vel * dt;
 }
 
-bool Ball::DoWallCollision(RectF & wall)
+int Ball::DoWallCollision(RectF & wall)
 {
-	bool didItCollide = false;
+	int didItCollide = 0;
 	RectF rect = GetRect();
 
 	if (rect.left <= wall.left)
 	{
 		pos.x -= rect.left - wall.left;
 		ReboundX();
-		didItCollide = true;
+		didItCollide = 1;
 	}
 	if (rect.right > wall.right)
 	{
 		pos.x -= rect.right - wall.right;
 		ReboundX();
-		didItCollide = true;
+		didItCollide = 1;
 	}
 	if (rect.top <= wall.top)
 	{
 		pos.y -= rect.top - wall.top;
 		vel.y = -vel.y;// ReboundY();
-		didItCollide = true;
+		didItCollide = 1;
 	}
 	if (rect.bottom > wall.bottom)
 	{
 		pos.y -= rect.bottom - wall.bottom;
 		ReboundY();
-		/*if (pad.GetLives() > 0)
-			pad.LoseLive();
-		else
-			died = true;*/
 
-		didItCollide = false;
+		didItCollide = 2;
 	}
 
 	return didItCollide;
@@ -73,18 +69,7 @@ void Ball::ReboundY(Vec2& padPos)
 	const float dos = padPos.x;
 	const float res = (padPos.x / pos.x)/10;
 
-	//vel.x = vel.x + (vel.x * -res);
-	/*Vec2 tmpPos = padPos - pos;
-	tmpPos.x = atan2(tmpPos.y, tmpPos.x);
-	tmpPos.x = cos(tmpPos.x);
-	vel.x = 300.0f * tmpPos.x;*/
-	//vel.x = vel.x * cos(tmpPos.x);
 	vel.y = -vel.y;
-}
-
-bool Ball::Died() const
-{
-	return died;
 }
 
 RectF Ball::GetRect() const

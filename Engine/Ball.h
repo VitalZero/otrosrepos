@@ -11,11 +11,11 @@ public:
 	Ball(Vec2& pos_in, Vec2& vel_in, Paddle& pad);
 	void Draw(Graphics& gfx) const;
 	void Update(float dt);
-	bool DoWallCollision(RectF& wall);
+	// 0 = null, 1 = pared 2 = abajo
+	int DoWallCollision(RectF& wall);
 	void ReboundX();
 	void ReboundY(Vec2& padPos);
 	void ReboundY();
-	bool Died() const;
 	RectF GetRect() const;
 	Vec2 GetVel() const;
 	Vec2 GetPos() const;

@@ -56,6 +56,8 @@ private:
 	static constexpr int nBricks = bricksAcross * bricksDown;
 	Sound soundPad;
 	Sound soundBrick;
+	Sound soundFart;
+	bool isGameOver = false;
 	Ball ball;
 	FrameTimer ft;
 	Brick bricks[nBricks];
