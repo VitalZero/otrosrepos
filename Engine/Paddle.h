@@ -22,6 +22,7 @@ protected:
 	Color wingColor = Colors::Red;
 	Color color = Colors::White;
 	float halfWidth, halfHeight;
+	const float exitXFactor = 0.045f;
 	Vec2 pos;
 	bool isCoolDown = false;
 	int lives = 3;

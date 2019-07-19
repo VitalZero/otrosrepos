@@ -47,7 +47,7 @@ bool Paddle::DoBallCollision(Ball & ball)
 				|| (bPos.x >= rect.left && bPos.x <= rect.right))
 			{
 				const float xDifference = bPos.x - pos.x;
-				const Vec2 dir(xDifference, -1.0f);
+				const Vec2 dir(xDifference * exitXFactor, -1.0f);
 				ball.SetDirection(dir);
 				//ball.ReboundY();
 			}
