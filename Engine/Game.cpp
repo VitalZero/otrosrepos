@@ -29,7 +29,7 @@ Game::Game(MainWindow& wnd)
 	soundBrick(L"sounds\\arkbrick.wav"),
 	soundFart(L"sounds\\fart.wav"),
 	pad(Vec2(400.0f, 550.0f), 50.0f, 8.0f),
-	ball(Vec2(400.0f, 400.0f), Vec2(-300.0f, -300.0f), pad),
+	ball(Vec2(400.0f, 400.0f), Vec2(-1.0f, -1.0f) ),
 	wall( 135.0f, 70.0f, float(Graphics::ScreenWidth) -135.0f, float(Graphics::ScreenHeight), 5)
 {
 	const Color colors[6] = { Colors::Blue, Colors::Cyan, Colors::Red, Colors::Green, Colors::Magenta, Colors::Yellow};

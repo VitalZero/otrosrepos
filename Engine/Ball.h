@@ -8,7 +8,7 @@ class Paddle;
 class Ball
 {
 public:
-	Ball(Vec2& pos_in, Vec2& vel_in, Paddle& pad);
+	Ball(const Vec2& pos_in, const Vec2& dir_in);
 	void Draw(Graphics& gfx) const;
 	void Update(float dt);
 	// 0 = null, 1 = pared 2 = abajo
@@ -19,11 +19,11 @@ public:
 	RectF GetRect() const;
 	Vec2 GetVel() const;
 	Vec2 GetPos() const;
+	void SetDirection(const Vec2& dir);
 protected:
 	Vec2 pos;
 	Vec2 vel;
-	Paddle& pad;
+	float speed = 400.0f;
 	bool died = false;
 	static constexpr float radius = 7.0f;
-
 };

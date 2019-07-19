@@ -1,12 +1,11 @@
 #include "Ball.h"
 #include "Paddle.h"
 
-Ball::Ball(Vec2 & pos_in, Vec2 & vel_in, Paddle& pad)
+Ball::Ball(const Vec2 & pos_in, const Vec2 & dir_in)
 	:
-	pos(pos_in),
-	vel(vel_in),
-	pad(pad)
+	pos(pos_in)
 {
+	SetDirection(dir_in);
 }
 
 void Ball::Draw(Graphics & gfx) const
@@ -63,7 +62,7 @@ void Ball::ReboundY()
 	vel.y = -vel.y;
 }
 
-void Ball::ReboundY(Vec2& padPos)
+void Ball::ReboundY(Vec2 & padPos)
 {
 	const float uno = pos.x;
 	const float dos = padPos.x;
@@ -80,6 +79,11 @@ RectF Ball::GetRect() const
 Vec2 Ball::GetPos() const
 {
 	return pos;
+}
+
+void Ball::SetDirection(const Vec2 & dir)
+{
+	vel = dir.GetNormalized() * speed;
 }
 
 Vec2 Ball::GetVel() const
