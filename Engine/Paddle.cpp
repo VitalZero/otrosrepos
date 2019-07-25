@@ -4,7 +4,10 @@ Paddle::Paddle(const Vec2 & pos_in, float hWidth, float hHeight)
 	:
 	pos(pos_in),
 	halfWidth(hWidth),
-	halfHeight(hHeight)
+	halfHeight(hHeight),
+	exitXFactor(maximumExitRatio / halfWidth),
+	fixedZoneHalfWidth( halfWidth * fixedZoneWidthRatio),
+	fixedZoneExitX( fixedZoneHalfWidth * exitXFactor)
 {
 }
 
@@ -53,16 +56,15 @@ bool Paddle::DoBallCollision(Ball & ball)
 				multiplicado por el factor de salida en X (negativo para la izquierda, positivo para la derecha)
 				*/
 				const float xDifference = bPos.x - pos.x;
-				const float fixedXComponent = fixedZoneHalfWidth * exitXFactor;
 				if (std::abs(xDifference) < fixedZoneHalfWidth)
 				{
 					if (xDifference < 0.0f)
 					{
-						dir = Vec2(-fixedXComponent, -1.0f);
+						dir = Vec2(-fixedZoneExitX, -1.0f);
 					}
 					else
 					{
-						dir = Vec2(fixedXComponent, -1.0f);
+						dir = Vec2(fixedZoneExitX, -1.0f);
 					}
 				}
 				else

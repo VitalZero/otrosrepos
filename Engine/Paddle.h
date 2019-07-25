@@ -19,13 +19,19 @@ public:
 	void ResetCoolDown();
 protected:
 	static constexpr float wingWidth = 18.0f;
-	Color wingColor = Colors::Red;
-	Color color = Colors::White;
-	float halfWidth, halfHeight;
-	const float exitXFactor = 0.045f;
-	float fixedZoneHalfWidth = 15.0f;
+	static constexpr Color wingColor = Colors::Red;
+	static constexpr Color color = Colors::White;
+	static constexpr float speed = 300.0f;
+	// comportamiento del rebote
+	static constexpr float maximumExitRatio = 2.6f;
+	static constexpr float fixedZoneWidthRatio = .2f;
+	float halfWidth;
+	float halfHeight;
+	float exitXFactor;
+	float fixedZoneHalfWidth;
+	float fixedZoneExitX;
 	Vec2 pos;
 	bool isCoolDown = false;
 	int lives = 3;
-	float speed = 300.0f;
+	
 };
