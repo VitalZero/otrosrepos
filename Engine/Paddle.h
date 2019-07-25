@@ -23,6 +23,7 @@ protected:
 	Color color = Colors::White;
 	float halfWidth, halfHeight;
 	const float exitXFactor = 0.045f;
+	float fixedZoneHalfWidth = 15.0f;
 	Vec2 pos;
 	bool isCoolDown = false;
 	int lives = 3;

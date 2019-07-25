@@ -39,17 +39,37 @@ bool Paddle::DoBallCollision(Ball & ball)
 	if (!isCoolDown)
 	{
 		const RectF rect = GetRect();
-		if (rect.IsOverlappingWith(ball.GetRect()) /*&& (ball.GetVel().y > 0) */)
+		if (rect.IsOverlappingWith(ball.GetRect()) )
 		{
 			const Vec2 bPos = ball.GetPos();
 
 			if (std::signbit(ball.GetVel().x) && std::signbit((ball.GetPos() - pos).x)
 				|| (bPos.x >= rect.left && bPos.x <= rect.right))
 			{
+				Vec2 dir;
+				/* Si, la diferencia entre el centro de la pelota y el centro del paddle es mayor al
+				fixedZoneXHalfWidth, entonces utilizar la diferencia multiplicado por el factor de salida en X
+				Si es menor, entonces utilizar el fixedXComponent que es el resultado del fixedZoneXHalfWidth
+				multiplicado por el factor de salida en X (negativo para la izquierda, positivo para la derecha)
+				*/
 				const float xDifference = bPos.x - pos.x;
-				const Vec2 dir(xDifference * exitXFactor, -1.0f);
+				const float fixedXComponent = fixedZoneHalfWidth * exitXFactor;
+				if (std::abs(xDifference) < fixedZoneHalfWidth)
+				{
+					if (xDifference < 0.0f)
+					{
+						dir = Vec2(-fixedXComponent, -1.0f);
+					}
+					else
+					{
+						dir = Vec2(fixedXComponent, -1.0f);
+					}
+				}
+				else
+				{
+					dir = Vec2(xDifference * exitXFactor, -1.0f);
+				}
 				ball.SetDirection(dir);
-				//ball.ReboundY();
 			}
 			else
 			{
