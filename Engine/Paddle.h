@@ -24,7 +24,7 @@ protected:
 	static constexpr float speed = 300.0f;
 	// comportamiento del rebote
 	static constexpr float maximumExitRatio = 2.6f;
-	static constexpr float fixedZoneWidthRatio = .2f;
+	static constexpr float fixedZoneWidthRatio = 0.2f;
 	float halfWidth;
 	float halfHeight;
 	float exitXFactor;
