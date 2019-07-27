@@ -11,7 +11,10 @@ public:
 	RectF GetExpanded(float offset) const;
 	Vec2 GetCenter() const;
 public:
-	float left, top, right, bottom;
+	float left;
+	float top;
+	float right;
+	float bottom;
 	bool IsOverlappingWith(const RectF& other) const;
 	static RectF FromCenter(const Vec2& center, float halfWidth, float halfHeight);
 private:

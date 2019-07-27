@@ -358,7 +358,7 @@ void Graphics::DrawIsoRightTriUL(int x, int y, int size, Color c)
 	for (int loop_y = y; loop_y < y + size; loop_y++)
 	{
 		const int currLine = loop_y - y;
-		for (int loop_x = x; loop_x < x - currLine; loop_x++)
+		for (int loop_x = x; loop_x < x +size - currLine; loop_x++)
 		{
 			PutPixel(loop_x, loop_y, c);
 		}

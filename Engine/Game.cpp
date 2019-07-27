@@ -140,8 +140,6 @@ void Game::UpdateModel(float dt)
 
 void Game::ComposeFrame()
 {
-	
-
 	for (const Brick& b : bricks)
 	{
 		b.Draw(gfx);
