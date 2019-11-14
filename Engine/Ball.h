@@ -8,11 +8,18 @@ class Paddle;
 class Ball
 {
 public:
+	enum class Collisions
+	{
+		Empty,
+		Wall,
+		Floor
+	};
+public:
 	Ball(const Vec2& pos_in, const Vec2& dir_in);
 	void Draw(Graphics& gfx) const;
 	void Update(float dt);
 	// 0 = null, 1 = pared 2 = abajo
-	int DoWallCollision(RectF& wall);
+	Collisions DoWallCollision(RectF& wall);
 	void ReboundX();
 	void ReboundY(Vec2& padPos);
 	void ReboundY();

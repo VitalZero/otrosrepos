@@ -118,14 +118,15 @@ void Game::UpdateModel(float dt)
 		{
 			soundPad.Play();
 		}
-		const int kindOfCollision = ball.DoWallCollision(wall.GetRect());
 
-		if (kindOfCollision == 1)
+		const Ball::Collisions kindOfCollision = ball.DoWallCollision(wall.GetRect());
+
+		if (kindOfCollision == Ball::Collisions::Wall)
 		{
 			pad.ResetCoolDown();
 			soundPad.Play();
 		}
-		else if (kindOfCollision == 2)
+		else if (kindOfCollision == Ball::Collisions::Floor)
 		{
 			if (pad.GetLives() <= 0)
 				isGameOver = true;

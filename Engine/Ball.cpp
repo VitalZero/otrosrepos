@@ -18,35 +18,35 @@ void Ball::Update(float dt)
 	pos += vel * dt;
 }
 
-int Ball::DoWallCollision(RectF & wall)
+Ball::Collisions Ball::DoWallCollision(RectF & wall)
 {
-	int didItCollide = 0;
+	Collisions didItCollide = Collisions::Empty;
 	RectF rect = GetRect();
 
 	if (rect.left <= wall.left)
 	{
 		pos.x -= rect.left - wall.left;
 		ReboundX();
-		didItCollide = 1;
+		didItCollide = Collisions::Wall;
 	}
 	if (rect.right > wall.right)
 	{
 		pos.x -= rect.right - wall.right;
 		ReboundX();
-		didItCollide = 1;
+		didItCollide = Collisions::Wall;
 	}
 	if (rect.top <= wall.top)
 	{
 		pos.y -= rect.top - wall.top;
 		vel.y = -vel.y;// ReboundY();
-		didItCollide = 1;
+		didItCollide = Collisions::Wall;
 	}
 	if (rect.bottom > wall.bottom)
 	{
 		pos.y -= rect.bottom - wall.bottom;
 		ReboundY();
 
-		didItCollide = 2;
+		didItCollide = Collisions::Floor;
 	}
 
 	return didItCollide;
