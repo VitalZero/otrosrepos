@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include "Dude.h"
 #include "Vec2.h"
+#include "Surface.h"
 
 class Poo
 {
@@ -17,4 +18,5 @@ private:
 	static constexpr float width = 24;
 	static constexpr float height = 24;
 	bool initialized = false;
+	Surface sprite = "bmp/poo.bmp";
 };

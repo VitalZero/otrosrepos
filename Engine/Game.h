@@ -31,6 +31,7 @@
 #include <random>
 #include "FrameTimer.h"
 #include "Vec2.h"
+#include "Surface.h"
 
 class Game
 {
@@ -68,5 +69,7 @@ private:
 	Sound title = Sound( L"Sounds\\title.wav" );
 	SoundEffect fart = SoundEffect( 
 		{ L"Sounds\\fart1.wav",L"Sounds\\fart2.wav" } );
+	Surface gameOverSprite = "bmp/game_over.bmp";
+	Surface startSprite = "bmp/dapoopoo.bmp";
 	/********************************/
 };

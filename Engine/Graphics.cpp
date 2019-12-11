@@ -372,9 +372,9 @@ void Graphics::DrawSpriteNonChroma(int x, int y, const RectI & srcRect, const Su
 void Graphics::DrawSpriteNonChroma(int x, int y, RectI srcRect, const RectI & clip, const Surface & s)
 {
 	assert(srcRect.left >= 0);
-	assert(srcRect.right < s.GetWidth());
+	assert(srcRect.right <= s.GetWidth());
 	assert(srcRect.top >= 0);
-	assert(srcRect.bottom < s.GetHeight());
+	assert(srcRect.bottom <= s.GetHeight());
 
 	if (x < clip.left)
 	{
