@@ -246,3 +246,4 @@ ModelManifest.xml
 
 # Ignore dumb pre-compiled shader header files
 *.shh
+/Engine/bmp
