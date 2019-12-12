@@ -25,7 +25,7 @@ public:
 private:
 	static constexpr Color c = Colors::Blue;
 	static constexpr int girth = 12;
-	static constexpr int scale = 4;
+	static constexpr int scale = 10;
 	int level = 0;
 	int x;
 	int y;

@@ -17,6 +17,5 @@ private:
 	Vec2 vel;
 	static constexpr float width = 24;
 	static constexpr float height = 24;
-	bool initialized = false;
 	Surface& pooSprite;
 };

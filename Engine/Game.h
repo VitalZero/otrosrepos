@@ -70,8 +70,8 @@ private:
 	Sound title = Sound( L"Sounds\\title.wav" );
 	SoundEffect fart = SoundEffect( 
 		{ L"Sounds\\fart1.wav",L"Sounds\\fart2.wav" } );
-	Surface gameOverSprite = "bmp/game_over.bmp";
-	Surface startSprite = "bmp/dapoopoo.bmp";
-	Surface pooSprite = "bmp/poo.bmp";
+	Surface gameOverSprite = Surface("bmp/game_over.bmp");
+	Surface startSprite = Surface("bmp/dapoopoo.bmp");
+	Surface pooSprite = Surface("bmp/poo.bmp");
 	/********************************/
 };
