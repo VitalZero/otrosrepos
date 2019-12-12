@@ -39,7 +39,7 @@ Game::Game( MainWindow& wnd )
 	std::uniform_real_distribution<float> vDist( -2.5f * 60.0f, 2.5f  * 60.0f);
 	for( int i = 0; i < nPoo; ++i )
 	{
-		poos[i].Init( Vec2(xDist( rng ),yDist( rng )), Vec2(vDist(rng) , vDist(rng)) );
+		poos.emplace_back( Vec2(xDist( rng ),yDist( rng )), Vec2(vDist(rng) , vDist(rng)) , pooSprite);
 	}
 	title.Play();
 }
@@ -90,12 +90,14 @@ void Game::UpdateModel()
 
 void Game::DrawGameOver(int x, int y)
 {
-	gfx.DrawSpriteNonChroma(x, y, gameOverSprite);
+	gfx.DrawSprite(x, y, gameOverSprite, Colors::Black);
 }
 
 void Game::DrawTitleScreen(int x, int y)
 {
-	gfx.DrawSpriteNonChroma(x, y, startSprite);
+	int cx = (Graphics::ScreenWidth / 2) - startSprite.GetRect().GetCenter().x;
+	int cy = (Graphics::ScreenHeight / 2) - startSprite.GetRect().GetCenter().y;
+	gfx.DrawSpriteNonChroma(cx, cy, startSprite);
 }
 
 void Game::ComposeFrame()

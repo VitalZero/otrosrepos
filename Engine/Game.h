@@ -32,6 +32,7 @@
 #include "FrameTimer.h"
 #include "Vec2.h"
 #include "Surface.h"
+#include <vector>
 
 class Game
 {
@@ -62,7 +63,7 @@ private:
 	Goal goal;
 	Meter meter;
 	static constexpr int nPoo = 10;
-	Poo poos[nPoo];
+	std::vector<Poo> poos;
 	bool isStarted = false;
 	bool isGameOver = false;
 	SoundEffect pickup = SoundEffect( { L"Sounds\\coin.wav" } );
@@ -71,5 +72,6 @@ private:
 		{ L"Sounds\\fart1.wav",L"Sounds\\fart2.wav" } );
 	Surface gameOverSprite = "bmp/game_over.bmp";
 	Surface startSprite = "bmp/dapoopoo.bmp";
+	Surface pooSprite = "bmp/poo.bmp";
 	/********************************/
 };

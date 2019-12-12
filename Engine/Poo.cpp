@@ -2,17 +2,16 @@
 #include "Graphics.h"
 #include <assert.h>
 
-void Poo::Init(const Vec2& pos_in, const Vec2& vel_in)
+ Poo::Poo(const Vec2& pos_in, const Vec2& vel_in, Surface& sprite)
+	 :
+	 pooSprite(sprite)
 {
-	assert( initialized == false );
 	pos = pos_in;
 	vel = vel_in;
-	initialized = true;
 }
 
 void Poo::Update(float dt)
 {
-	assert( initialized == true );
 	pos +=  vel * dt;
 
 	const float right = pos.x + width;
@@ -42,7 +41,6 @@ void Poo::Update(float dt)
 
 bool Poo::TestCollision( const Dude& dude ) const
 {
-	assert( initialized == true );
 	const float duderight = dude.GetPos().x + dude.GetWidth();
 	const float dudebottom = dude.GetPos().y + dude.GetHeight();
 	const float pooright = pos.x + width;
@@ -57,7 +55,5 @@ bool Poo::TestCollision( const Dude& dude ) const
 
 void Poo::Draw(Graphics& gfx) const
 {
-	assert(initialized == true);
-
-	gfx.DrawSprite((int)pos.x, (int)pos.y, { 0, 24, 0, 24 }, gfx.GetScreenRect(), sprite, Colors::White);
+	gfx.DrawSprite((int)pos.x, (int)pos.y, pooSprite, Colors::White);
 }

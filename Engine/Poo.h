@@ -8,7 +8,7 @@
 class Poo
 {
 public:
-	void Init( const Vec2& pos_in, const Vec2& vel_in );
+	Poo( const Vec2& pos_in, const Vec2& vel_in, Surface& sprite );
 	void Update(float dt);
 	bool TestCollision( const Dude& dude ) const;
 	void Draw( Graphics& gfx ) const;
@@ -18,5 +18,5 @@ private:
 	static constexpr float width = 24;
 	static constexpr float height = 24;
 	bool initialized = false;
-	Surface sprite = "bmp/poo.bmp";
+	Surface& pooSprite;
 };
